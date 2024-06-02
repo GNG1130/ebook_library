@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子書櫃</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'library/styles.css' %}">
+    <style>
+        .ebook-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .ebook {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            cursor: pointer;
+            position: relative;
+        }
+        .ebook img {
+            width: 100%;
+            height: auto;
+        }
+        .ebook p {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f00;
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>電子書櫃</h1>
+    <div class="ebook-container">
+        {% for book in books %}
+            <div class="ebook" onclick="window.open('{{ book.pdf.url }}', '_blank')">
+                {% if book.cover %}
+                    <img src="{{ book.cover.url }}" alt="{{ book.title }} cover">
+                {% else %}
+                    <img src="{% static 'library/default_cover.jpg' %}" alt="Default Cover">
+                {% endif %}
+                <p>{{ book.title }}</p>
+                <button class="delete-btn" onclick="deleteBook(event, '{{ book.pk }}')">刪除</button>
+
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'upload_book' %}">上傳新書</a>
+
+    <script>
+        function deleteBook(event, bookId) {
+            event.stopPropagation();
+            if (confirm('你確定要刪除此書籍嗎？')) {
+                fetch(`/delete_book/${bookId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();  // 刷新页面以更新书籍列表
+                    } else {
+                        console.error('删除失败');
+                    }
+                })
+                .catch(error => console.error('删除失败', error));
+            }
+        }
+    </script>
+</body>
+</html>
