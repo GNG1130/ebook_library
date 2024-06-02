@@ -29,7 +29,7 @@ pandas==2.2.2
 pillow==10.3.0
 psycopg2-binary==2.9.9
 pyparsing==3.1.2
-PyPDF2 @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_015o_uq2mh/croots/recipe/pypdf2_1662469690829/work
+PyPDF2==1.26.0
 python-dateutil==2.9.0.post0
 pytz==2024.1
 PyYAML==6.0.1
@@ -46,7 +46,6 @@ tokenizers==0.19.1
 torch==2.3.0
 tqdm==4.66.4
 transformers==4.41.0
-typing_extensions @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_93dg13ilv4/croot/typing_extensions_1715268840722/work
 tzdata==2024.1
 urllib3==2.2.1
 uvicorn==0.30.1
