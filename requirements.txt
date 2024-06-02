@@ -1,6 +1,8 @@
 asgiref==3.7.2
+Brotli==1.1.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
+click==8.1.7
 contourpy==1.2.1
 cycler==0.12.1
 dj-database-url==2.2.0
@@ -9,6 +11,8 @@ easy-thumbnails==2.8.5
 filelock==3.14.0
 fonttools==4.51.0
 fsspec==2024.5.0
+gunicorn==22.0.0
+h11==0.14.0
 huggingface-hub==0.23.1
 idna==3.7
 importlib_resources==6.4.0
@@ -45,5 +49,7 @@ transformers==4.41.0
 typing_extensions @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_93dg13ilv4/croot/typing_extensions_1715268840722/work
 tzdata==2024.1
 urllib3==2.2.1
+uvicorn==0.30.1
+whitenoise==6.6.0
 xgboost==2.0.3
 zipp==3.18.2
